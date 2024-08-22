@@ -2,12 +2,16 @@ import { emailForm as emailSchema, firstNameForm as firstNameSchema } from '$lib
 import prisma from '$lib/server/db';
 import { sendChangeEmailEmail } from '$lib/server/email';
 import { generateToken } from '$lib/server/token';
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { setError, setMessage, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { Actions, PageServerLoad } from './$types';
+import { rateLimiter } from '$lib/server/rate_limit';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async (event) => {
+	await rateLimiter.cookieLimiter?.preflight(event);
+	const { locals } = event;
+
 	// User will never be null as route is protected
 	const user = locals.user!;
 
@@ -37,7 +41,11 @@ export const actions: Actions = {
 
 		return setMessage(form, 'success');
 	},
-	email: async ({ request, locals }) => {
+	email: async (event) => {
+		if (await rateLimiter.isLimited(event)) return error(429);
+
+		const { locals, request } = event;
+
 		const user = locals.user!;
 
 		const form = await superValidate(request, zod(emailSchema));

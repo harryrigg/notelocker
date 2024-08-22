@@ -5,20 +5,27 @@ import { generateToken } from '$lib/server/token';
 import { validateToken } from '$lib/server/turnstile';
 import { hash } from '@node-rs/argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { generateIdFromEntropySize } from 'lucia';
 import { setError, setMessage, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { Actions, PageServerLoad } from './$types';
+import { rateLimiter } from '$lib/server/rate_limit';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
+	await rateLimiter.cookieLimiter?.preflight(event);
+
 	const form = await superValidate(zod(schema));
 
 	return { form };
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async (event) => {
+		if (await rateLimiter.isLimited(event)) error(429);
+
+		const { request } = event;
+
 		const form = await superValidate(request, zod(schema));
 
 		if (!form.valid) {
