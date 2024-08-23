@@ -1,6 +1,7 @@
 # NoteLocker
-
-**Fully featured note taking CRUD application**
+**Fully featured note taking CRUD application**  
+  
+**[Check it out](https://notelocker.harryrigg.com)**
 
 ## Features
 
