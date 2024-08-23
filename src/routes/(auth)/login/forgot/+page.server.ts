@@ -57,7 +57,7 @@ export const actions: Actions = {
 			}
 		});
 
-		sendPasswordResetEmail(form.data.email, token.urlencoded);
+		await sendPasswordResetEmail(form.data.email, token.urlencoded);
 
 		return setMessage(form, 'success');
 	}

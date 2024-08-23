@@ -70,7 +70,7 @@ export const actions: Actions = {
 			throw e;
 		}
 
-		sendVerificationEmail(form.data.email, token.urlencoded);
+		await sendVerificationEmail(form.data.email, token.urlencoded);
 
 		return setMessage(form, 'success');
 	}

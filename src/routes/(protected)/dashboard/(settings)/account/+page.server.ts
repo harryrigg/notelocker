@@ -74,7 +74,8 @@ export const actions: Actions = {
 			})
 		]);
 
-		sendChangeEmailEmail(form.data.email, token.urlencoded);
+		await sendChangeEmailEmail(form.data.email, token.urlencoded);
+
 		return setMessage(form, 'success');
 	}
 };
