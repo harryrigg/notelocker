@@ -1,7 +1,13 @@
 <script>
+	import { dev } from '$app/environment';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import { inject } from '@vercel/analytics';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
+
+	if (!dev) {
+		inject({ mode: 'production' });
+	}
 </script>
 
 <ModeWatcher />
