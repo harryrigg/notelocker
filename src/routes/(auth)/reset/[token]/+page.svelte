@@ -7,6 +7,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import type { PageServerData } from './$types';
+	import { Loader } from 'lucide-svelte';
 
 	export let data: PageServerData;
 
@@ -16,7 +17,7 @@
 			formHandleServerError(result);
 		}
 	});
-	const { form: formData, enhance } = form;
+	const { form: formData, submitting, enhance } = form;
 </script>
 
 <svelte:head>
@@ -47,7 +48,13 @@
 				</Form.Field>
 			</Card.Content>
 			<Card.Footer class="flex justify-between">
-				<Form.Button>Submit</Form.Button>
+				<Form.Button disabled={$submitting}>
+					{#if $submitting}
+						<Loader size="16" class="animate-spin" />
+					{:else}
+						Submit
+					{/if}
+				</Form.Button>
 			</Card.Footer>
 		</form>
 	</Card.Root>
