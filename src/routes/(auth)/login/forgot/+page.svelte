@@ -59,7 +59,7 @@
 				</Card.Content>
 				<Card.Footer class="flex justify-between">
 					<Button variant="outline" href="/login">Back to Login</Button>
-					<Form.Button disabled={$submitting}>
+					<Form.Button class="w-20" disabled={$submitting}>
 						{#if $submitting}
 							<Loader size="16" class="animate-spin" />
 						{:else}

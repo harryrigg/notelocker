@@ -48,7 +48,7 @@
 				</Form.Field>
 			</Card.Content>
 			<Card.Footer class="flex justify-between">
-				<Form.Button disabled={$submitting}>
+				<Form.Button class="w-20" disabled={$submitting}>
 					{#if $submitting}
 						<Loader size="16" class="animate-spin" />
 					{:else}
