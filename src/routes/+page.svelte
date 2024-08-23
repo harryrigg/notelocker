@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>NoteLocker</title>
+</svelte:head>
+
 <a class="absolute left-1/2 top-6 -translate-x-1/2 text-2xl tracking-tight md:hidden" href="/">
 	NoteLocker
 </a>
