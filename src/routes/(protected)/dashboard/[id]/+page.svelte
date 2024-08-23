@@ -5,6 +5,7 @@
 	import { CheckCheck, Loader, RefreshCw, Trash2, X } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import type { PageServerData } from './$types';
+	import { Button } from '$lib/components/ui/button';
 
 	export let data: PageServerData;
 
@@ -30,8 +31,12 @@
 		}
 	}
 
+	let confirmDeleteOpen = false;
+	let deleteLoading = false;
 	async function delete_note() {
+		deleteLoading = true;
 		await fetch(`/api/note/${id}`, { method: 'DELETE' });
+		deleteLoading = false;
 		justSaved = true;
 		await goto('/dashboard', { invalidateAll: true });
 	}
@@ -101,7 +106,7 @@
 				bind:value={title}
 			/>
 
-			<AlertDialog.Root>
+			<AlertDialog.Root bind:open={confirmDeleteOpen}>
 				<AlertDialog.Trigger class="ml-auto">
 					<button
 						class="ml-auto flex items-center justify-center gap-1 rounded-md border border-destructive px-2 py-1 text-destructive"
@@ -115,8 +120,14 @@
 						<AlertDialog.Description>This action cannot be undone.</AlertDialog.Description>
 					</AlertDialog.Header>
 					<AlertDialog.Footer>
-						<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-						<AlertDialog.Action on:click={delete_note}>Continue</AlertDialog.Action>
+						<AlertDialog.Cancel disabled={deleteLoading}>Cancel</AlertDialog.Cancel>
+						<Button class="w-20" disabled={deleteLoading} on:click={delete_note}>
+							{#if deleteLoading}
+								<Loader size="16" class="animate-spin" />
+							{:else}
+								Delete
+							{/if}
+						</Button>
 					</AlertDialog.Footer>
 				</AlertDialog.Content>
 			</AlertDialog.Root>
