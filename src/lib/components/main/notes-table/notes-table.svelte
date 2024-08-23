@@ -58,7 +58,7 @@
 </script>
 
 <div class={cn('flex min-h-0 flex-col gap-2', className)}>
-	<div class="flex flex-col gap-1.5 lg:flex-row">
+	<div class="flex flex-col-reverse gap-1.5 lg:flex-row">
 		<div class="flex gap-1.5">
 			<Input
 				type="search"
