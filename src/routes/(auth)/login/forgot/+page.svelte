@@ -28,7 +28,7 @@
 </svelte:head>
 
 <div class="flex h-full items-center justify-center">
-	<Card.Root class="w-2/5">
+	<Card.Root class="w-full md:w-2/5">
 		{#if $message == 'success'}
 			<Card.Header>
 				<Card.Title>Check your inbox</Card.Title>

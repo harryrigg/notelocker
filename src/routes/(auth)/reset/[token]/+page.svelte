@@ -25,7 +25,7 @@
 </svelte:head>
 
 <div class="flex h-full items-center justify-center">
-	<Card.Root class="flex flex-col items-center md:block md:w-2/5">
+	<Card.Root class="flex w-full flex-col items-center md:w-2/5">
 		<Card.Header>
 			<Card.Title>Change Password</Card.Title>
 			<Card.Description>Enter your new password below</Card.Description>

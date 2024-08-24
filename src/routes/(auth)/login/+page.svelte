@@ -26,7 +26,7 @@
 </svelte:head>
 
 <div class="flex h-full items-center justify-center">
-	<Card.Root class="md:w-2/5">
+	<Card.Root class="w-full md:w-2/5">
 		<Card.Header>
 			<Card.Title>Login</Card.Title>
 			<Card.Description>
