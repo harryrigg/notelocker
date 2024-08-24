@@ -88,13 +88,13 @@
 				<span class="text-sm text-muted-foreground">Title</span>
 			</div>
 			{#each sorted as note}
-				<div class="flex items-center gap-4 border-b px-3 py-3">
+				<div class="flex items-center gap-4 border-b px-3">
 					<Checkbox
 						checked={selected.includes(note.id)}
 						onCheckedChange={(state) => onSelectedChange(state, note.id)}
 					/>
-					<a href={`/dashboard/${note.id}`}>
-						{note.title}
+					<a href={`/dashboard/${note.id}`} class="flex-1 py-3">
+						<span>{note.title}</span>
 					</a>
 				</div>
 			{/each}
