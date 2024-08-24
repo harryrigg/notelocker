@@ -3,6 +3,8 @@ import Description from './card-description.svelte';
 import Footer from './card-footer.svelte';
 import Header from './card-header.svelte';
 import Title from './card-title.svelte';
+import Message from './card-message.svelte';
+import Form from './card-form.svelte';
 import Root from './card.svelte';
 
 export {
@@ -13,6 +15,8 @@ export {
 	Footer as CardFooter,
 	Header as CardHeader,
 	Title as CardTitle,
+	Form,
+	Message,
 	Content,
 	Description,
 	Footer,

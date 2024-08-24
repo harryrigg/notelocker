@@ -5,10 +5,10 @@
 	import { Input } from '$lib/components/ui/input';
 	import { login as schema } from '$lib/schemas';
 	import { formHandleServerError } from '$lib/utils';
+	import { Loader } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import type { PageServerData } from './$types';
-	import { Loader } from 'lucide-svelte';
 
 	export let data: PageServerData;
 
@@ -26,7 +26,7 @@
 </svelte:head>
 
 <div class="flex h-full items-center justify-center">
-	<Card.Root class="w-full md:w-2/5">
+	<Card.Form>
 		<Card.Header>
 			<Card.Title>Login</Card.Title>
 			<Card.Description>
@@ -61,5 +61,5 @@
 				</Form.Button>
 			</Card.Footer>
 		</form>
-	</Card.Root>
+	</Card.Form>
 </div>

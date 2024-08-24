@@ -5,11 +5,11 @@
 	import { Input } from '$lib/components/ui/input';
 	import { register as schema } from '$lib/schemas';
 	import { formHandleServerError } from '$lib/utils';
+	import { Loader } from 'lucide-svelte';
 	import { Turnstile } from 'svelte-turnstile';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import type { PageServerData } from './$types';
-	import { Loader } from 'lucide-svelte';
 
 	export let data: PageServerData;
 
@@ -27,14 +27,16 @@
 </svelte:head>
 
 <div class="flex h-full items-center justify-center">
-	<Card.Root class="w-full md:w-2/5">
+	<Card.Form>
 		{#if $message == 'success'}
-			<Card.Header>
-				<Card.Title>Check your inbox</Card.Title>
-			</Card.Header>
-			<Card.Content>
-				To complete your registration, please check your email for a confirmation link.
-			</Card.Content>
+			<Card.Message>
+				<Card.Header>
+					<Card.Title>Check your inbox</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					To complete your registration, please check your email for a confirmation link.
+				</Card.Content>
+			</Card.Message>
 		{:else}
 			<Card.Header>
 				<Card.Title>Register</Card.Title>
@@ -90,5 +92,5 @@
 				</Card.Footer>
 			</form>
 		{/if}
-	</Card.Root>
+	</Card.Form>
 </div>
