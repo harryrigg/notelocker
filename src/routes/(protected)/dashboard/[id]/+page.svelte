@@ -121,7 +121,7 @@
 					</AlertDialog.Header>
 					<AlertDialog.Footer>
 						<AlertDialog.Cancel disabled={deleteLoading}>Cancel</AlertDialog.Cancel>
-						<Button class="w-20" disabled={deleteLoading} on:click={delete_note}>
+						<Button class="min-w-20" disabled={deleteLoading} on:click={delete_note}>
 							{#if deleteLoading}
 								<Loader size="16" class="animate-spin" />
 							{:else}
