@@ -6,7 +6,7 @@
 	NoteLocker
 </a>
 
-<div class="flex h-full flex-col items-center justify-center gap-2 px-5 md:px-0">
+<div class="flex h-full flex-col items-center justify-center gap-5 px-5 sm:gap-2 md:px-0">
 	<span class="text-center text-xl">All your notes. Stored securely in one place.</span>
 	<span>
 		<a href="/register" class="font-bold text-blue-500 underline">Make an account</a> or
