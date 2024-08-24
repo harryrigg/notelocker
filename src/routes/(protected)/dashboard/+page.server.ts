@@ -3,12 +3,11 @@ import { redirect } from '@sveltejs/kit';
 import { customAlphabet } from 'nanoid';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals, depends }) => {
+export const load: PageServerLoad = async ({ locals }) => {
 	// User will never be null as route is protected
 	const user = locals.user!;
 
 	// Fetch notes
-	depends('custom:note_list');
 	const notes = await prisma.note.findMany({
 		where: {
 			authorId: user.id
